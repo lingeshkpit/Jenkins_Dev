@@ -9,12 +9,12 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'mvn --version'
+                sh 'docker images'
             }
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
+                sh 'docker pull bitnami/jenkins:latest'
             }
         }
     }
