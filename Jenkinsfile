@@ -17,16 +17,17 @@ pipeline {
                 sh 'docker pull bitnami/jenkins:latest'
             }
         }
-        stage('Docker_RMI') {
-            steps {
-                sh 'docker rmi $(docker images -q)'
-            }
-          }
+        
         stage('DOCKER_BUILD') {
             steps {
                 sh 'docker build -t devops .'
             }
         }
+        stage('Docker_RMI') {
+            steps {
+                sh 'docker rmi $(docker images -q)'
+            }
+          }
     }
     
 }
