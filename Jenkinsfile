@@ -22,9 +22,9 @@ pipeline {
                 sh 'docker rmi $(docker images -q)'
             }
           }
-        stage('JAVA') {
+        stage('DOCKER_BUILD') {
             steps {
-                sh 'java -version'
+                sh 'docker build -t devops .'
             }
         }
     }
