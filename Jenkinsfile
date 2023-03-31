@@ -21,6 +21,12 @@ pipeline {
             steps {
                 sh 'docker rmi $(docker images -q)'
             }
+          }
+        stage('JAVA') {
+            steps {
+                sh 'java -version'
+            }
         }
     }
+    
 }
