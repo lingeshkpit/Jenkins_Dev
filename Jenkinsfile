@@ -2,17 +2,17 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Docker') {
             steps {
                 sh 'docker version'
             }
         }
-        stage('Test') {
+        stage('Docker_images') {
             steps {
                 sh 'docker images'
             }
         }
-        stage('Deploy') {
+        stage('Docker_pull') {
             steps {
                 sh 'docker pull bitnami/jenkins:latest'
             }
