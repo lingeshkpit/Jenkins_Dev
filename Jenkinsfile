@@ -24,10 +24,6 @@ pipeline {
             }
         }
        
-         stage('push image') {
-            steps{
-                sh 'docker push lingeswararao/myweb:devops'
-            }
         }
         stage('Docker_RMI') {
             steps {
