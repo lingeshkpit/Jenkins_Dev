@@ -1,8 +1,6 @@
 pipeline {
     agent any 
-    environment {
-    DOCKERHUB_CREDENTIALS = credentials('DOCKERHUB_CREDENTIALS_PSW')
-    }
+    
     stages { 
         stage('Docker') {
             steps {
@@ -28,7 +26,7 @@ pipeline {
        
          stage('push image') {
             steps{
-                sh 'docker push lingeswararao/myweb:tagname:$BUILD_NUMBER'
+                sh 'docker push lingeswararao/myweb:devops'
             }
         }
         stage('Docker_RMI') {
