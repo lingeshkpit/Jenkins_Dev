@@ -24,7 +24,7 @@ pipeline {
             }
         }
        
-        }
+  
         stage('Docker_RMI') {
             steps {
                 sh 'docker rmi $(docker images -q)'
