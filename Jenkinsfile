@@ -1,6 +1,14 @@
 pipeline {
-    agent any
-
+    agent any 
+    environment {
+    DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+    }
+    stages { 
+        stage('SCM Checkout') {
+            steps{
+            git 'https://github.com/lingeshkpit/Jenkins_Dev.git'
+            }
+        }
     stages {
         stage('Docker') {
             steps {
@@ -18,9 +26,19 @@ pipeline {
             }
         }
         
-        stage('DOCKER_BUILD') {
+        stage('Build docker image') {
             steps {
                 sh 'docker build -t devops .'
+            }
+        }
+        stage('login to dockerhub') {
+            steps{
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u lingeswararao --password-stdin'
+            }
+        }
+         stage('push image') {
+            steps{
+                sh 'docker push lingeswararao/myweb:tagname:$BUILD_NUMBER'
             }
         }
         stage('Docker_RMI') {
