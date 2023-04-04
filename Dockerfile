@@ -7,7 +7,7 @@ yum -y install httpd && \
 yum clean all
  
 # Sample index.html for test 
-#COPY index.html /var/www/html/index.html
+#COPY web.jar /user/tomcat/webapp/
  
 # Port and set entry point for container 
 EXPOSE 80
