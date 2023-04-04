@@ -4,11 +4,6 @@ pipeline {
     DOCKERHUB_CREDENTIALS = credentials('DOCKERHUB_CREDENTIALS_PSW')
     }
     stages { 
-        stage('SCM Checkout') {
-            steps{
-            git 'https://github.com/lingeshkpit/Jenkins_Dev.git'
-            }
-        }
         stage('Docker') {
             steps {
                 sh 'docker version'
