@@ -25,11 +25,7 @@ pipeline {
                 sh 'docker build -t devops .'
             }
         }
-        stage('login to dockerhub') {
-            steps{
-                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u lingeswararao '
-            }
-        }
+       
          stage('push image') {
             steps{
                 sh 'docker push lingeswararao/myweb:tagname:$BUILD_NUMBER'
