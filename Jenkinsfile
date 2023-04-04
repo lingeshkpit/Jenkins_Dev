@@ -9,7 +9,6 @@ pipeline {
             git 'https://github.com/lingeshkpit/Jenkins_Dev.git'
             }
         }
-    stages {
         stage('Docker') {
             steps {
                 sh 'docker version'
