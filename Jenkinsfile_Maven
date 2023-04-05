@@ -35,7 +35,7 @@ pipeline {
         
         stage('Push docker image') {
             steps {
-                sh 'docker push docker push lingeswararao/myweb'
+                sh 'docker push docker push lingeswararao/myweb:latest'
             }
         }
          stage('Docker_RMI') {
