@@ -10,12 +10,6 @@ pipeline {
                '''
                 }
              }
-        stage('Docker') {
-            steps {
-                sh 'docker version'
-            }
-        }
-       
         stage('Docker_images') {
             steps {
                 sh 'docker images'
@@ -35,7 +29,10 @@ pipeline {
         
         stage('Push docker image') {
             steps {
-                sh 'docker push devops:latest'
+                sh  '''
+                docker login -u lingeswararao -p hitachi@2023
+                docker push devops:latest
+                '''
             }
         }
          stage('Docker_RMI') {
