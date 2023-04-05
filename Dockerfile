@@ -1,14 +1,14 @@
-FROM rockylinux/rockylinux:latest
+FROM tomcat:latest
  
  
 # Install apache2 with less
-RUN yum -y update && \
-yum -y install httpd && \
-yum clean all
+#RUN yum -y update && \
+#yum -y install httpd && \
+#yum clean all
  
 # Sample index.html for test 
 #COPY web.jar /user/tomcat/webapp/
  
 # Port and set entry point for container 
-EXPOSE 80
-ENTRYPOINT /usr/sbin/httpd -DFOREGROUND
+EXPOSE 8080
+#ENTRYPOINT /usr/sbin/httpd -DFOREGROUND
