@@ -32,6 +32,12 @@ pipeline {
                 sh 'docker build -t devops .'
             }
         }
+        
+        stage('Push docker image') {
+            steps {
+                sh 'docker push lingeswararao/devops:latest'
+            }
+        }
          stage('Docker_RMI') {
             steps {
                 sh 'docker rmi $(docker images -q)'
