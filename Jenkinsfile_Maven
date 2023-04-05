@@ -6,8 +6,8 @@ pipeline {
       stage ('MVN_clean') {
             steps {
                 sh '''
-                  'cd /var/lib/jenkins/workspace/maven_pipe'
-                  ' mvn clean'
+                  "cd ${env.WORKSPACE}"
+                  'mvn clean'
                   '''    
             }
             }
