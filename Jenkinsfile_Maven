@@ -1,20 +1,8 @@
 pipeline {
     agent any
-    tools {
-        Maven 'Maven 3.3.9'
-        jdk 'jdk8'
-    }
+    
     stages {
-        stage ('Initialize') {
-            steps {
-                sh '''
-                    echo "PATH = ${PATH}"
-                    echo "M2_HOME = ${M2_HOME}"
-                '''
-            }
-        }
-
-        stage ('Build') {
+      stage ('Build') {
             steps {
                 sh 'mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false' 
             }
