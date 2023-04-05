@@ -2,10 +2,43 @@ pipeline {
     agent any
     
     stages {
-      stage ('Build') {
+    
+      stage ('MVN_clean') {
+            steps {
+                sh 'mvn clean' 
+            }
+            }
+      stage ('MVN_build ') {
             steps {
                 sh 'mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false' 
             }
             }
+        stage('Docker') {
+            steps {
+                sh 'docker version'
+            }
+        }
+        stage('Docker_RMI') {
+            steps {
+                sh 'docker rmi $(docker images -q)'
+            }
+          }
+        stage('Docker_images') {
+            steps {
+                sh 'docker images'
+            }
+        }
+        stage('Docker_pull') {
+            steps {
+                sh 'docker pull bitnami/jenkins:latest'
+            }
+        }
+        
+        stage('Build docker image') {
+            steps {
+                sh 'docker build -t devops .'
+            }
+        }
+        
      }
       }
