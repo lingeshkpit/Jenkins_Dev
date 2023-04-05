@@ -15,11 +15,7 @@ pipeline {
                 sh 'docker version'
             }
         }
-        stage('Docker_RMI') {
-            steps {
-                sh 'docker rmi $(docker images -q)'
-            }
-          }
+       
         stage('Docker_images') {
             steps {
                 sh 'docker images'
@@ -36,6 +32,10 @@ pipeline {
                 sh 'docker build -t devops .'
             }
         }
-        
+         stage('Docker_RMI') {
+            steps {
+                sh 'docker rmi $(docker images -q)'
+            }
+          }
      }
       }
