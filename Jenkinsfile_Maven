@@ -5,7 +5,10 @@ pipeline {
     
       stage ('MVN_clean') {
             steps {
-                sh 'mvn clean' 
+                sh '''
+                  'cd /var/lib/jenkins/workspace/maven_pipe'
+                  ' mvn clean'
+                  '''    
             }
             }
       stage ('MVN_build ') {
