@@ -2,20 +2,14 @@ pipeline {
     agent any
     
     stages {
-    
-      stage ('MVN_clean') {
+          stage ('MVN_build ') {
             steps {
                 sh '''
-                  cd /var/lib/jenkins/workspace/maven_pipe/my-app
-                  mvn clean
-                  '''    
-            }
-            }
-      stage ('MVN_build ') {
-            steps {
-                sh 'mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false' 
-            }
-            }
+                 rm -rf /var/lib/jenkins/workspace/maven_pipe/my-app
+                'mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false' 
+               '''
+                }
+             }
         stage('Docker') {
             steps {
                 sh 'docker version'
