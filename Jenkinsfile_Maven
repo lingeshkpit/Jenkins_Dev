@@ -27,9 +27,9 @@ pipeline {
         steps {
             sh '''
              docker login -u lingeswararao -p hitachi@2023
-              docker pull nginx
-              docker tag nginx lingeswararao/nginx
-              docker push lingeswararao/nginx
+              docker pull tomcat
+              docker tag tomcat lingeswararao/tomcat
+              docker push lingeswararao/tomcat
              '''
            }
            }
