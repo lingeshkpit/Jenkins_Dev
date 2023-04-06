@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     stages {
-          stage ('MVN_build ') {
+          stage ('Maven_build ') {
             steps {
                 sh '''
                  rm -rf /var/lib/jenkins/workspace/maven_pipe/my-app
@@ -13,12 +13,7 @@ pipeline {
                  ls -lhtr
                '''
                 }
-             }
-        stage('Docker_images') {
-            steps {
-                sh 'docker images'
-            }
-        }
+              }
     
         stage('Build docker image') {
             steps {
@@ -30,7 +25,7 @@ pipeline {
                 sh 'docker login -u lingeswararao -p hitachi@2023'
             }
         }
-       stage('Push container') {
+       stage('Push Docker image to dockerhub') {
            steps {
             sh '''
               docker tag tomcat lingeswararao/tomcat
