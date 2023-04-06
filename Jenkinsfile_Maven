@@ -15,11 +15,7 @@ pipeline {
                 sh 'docker images'
             }
         }
-        stage('Docker_pull') {
-            steps {
-                sh 'docker pull tomcat'
-            }
-        }
+        
         
         stage('Build docker image') {
             steps {
