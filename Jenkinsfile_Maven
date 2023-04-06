@@ -31,7 +31,7 @@ pipeline {
         steps {
             sh '''
              docker login -u lingeswararao -p hitachi@2023
-             docker push devops:latest
+             docker push lingeswararao:devops
              '''
            }
            }
