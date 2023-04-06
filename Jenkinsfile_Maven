@@ -33,7 +33,7 @@ pipeline {
              '''
            }
            }
-         stage('Docker_RMI') {
+         stage('Docker_local_images_cleanup') {
             steps {
                 sh 'docker rmi -f $(docker images -q)'
             }
