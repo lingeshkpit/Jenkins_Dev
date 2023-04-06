@@ -27,14 +27,18 @@ pipeline {
             }
         }
         
-        stage('Push docker image') {
-            steps {
-                sh  '''
-                docker login -u lingeswararao -p hitachi@2023
-                docker push devops:latest
-                '''
-            }
-        }
+       stage('Push container') {
+        steps {
+            echo "Workspace is $WORKSPACE"
+            dir("$WORKSPACE/Dockerfile") {
+                script {
+                    def REGISTRY_URL = "https://index.docker.io/v1/"
+                    def USER_NAME = "lingeswararao"
+                    docker.withRegistry("$REGISTRY_URL", 'hitachi@2023') {
+                        def image = docker.build("$USER_NAME/tomcat:${env.BUILD_ID}")
+                        image.push()
+                    }
+                }
          stage('Docker_RMI') {
             steps {
                 sh 'docker rmi $(docker images -q)'
