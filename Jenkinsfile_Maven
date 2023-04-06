@@ -32,6 +32,7 @@ pipeline {
             sh '''
              docker login -u lingeswararao -p hitachi@2023
              docker push devops:latest
+             '''
            }
            }
          stage('Docker_RMI') {
