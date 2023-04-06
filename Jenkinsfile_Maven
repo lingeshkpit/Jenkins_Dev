@@ -19,7 +19,7 @@ pipeline {
         
         stage('Build docker image') {
             steps {
-                sh 'docker build -t lingeswararao:devops .'
+                sh 'docker build -t lingeswararao/tomcat .'
             }
         }
         
@@ -27,7 +27,7 @@ pipeline {
         steps {
             sh '''
              docker login -u lingeswararao -p hitachi@2023
-              docker pull tomcat
+              #docker pull tomcat
               docker tag tomcat lingeswararao/tomcat
               docker push lingeswararao/tomcat
              '''
