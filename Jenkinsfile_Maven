@@ -23,7 +23,7 @@ pipeline {
         }
         stage('login to dockerhub') {
             steps{
-                sh ' docker login -u lingeswararao -p hitachi@123'
+                sh 'docker login -u lingeswararao -p hitachi@123'
             }
         }
        stage('Push container') {
