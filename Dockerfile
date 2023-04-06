@@ -1,13 +1,6 @@
 FROM tomcat:latest
- 
- 
-# Install apache2 with less
-#RUN yum -y update && \
-#yum -y install httpd && \
-#yum clean all
- 
-# Sample index.html for test 
-#COPY web.jar /user/tomcat/webapp/
+  
+COPY /var/lib/jenkins/workspace/maven_pipe/my-app/target/*.jar /user/tomcat/webapp/
  
 # Port and set entry point for container 
 EXPOSE 8080
