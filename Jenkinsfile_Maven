@@ -1,8 +1,6 @@
 pipeline {
     agent any
-    environment {
-    DOCKERHUB_CREDENTIALS = credentials('lingeswararao')
-    }
+    
     stages {
           stage ('MVN_build ') {
             steps {
@@ -27,7 +25,7 @@ pipeline {
        stage('Push container') {
         steps {
             sh '''
-              echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin
+              echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u lingeswararao --password-stdin
               docker tag tomcat lingeswararao/tomcat
               docker push lingeswararao/tomcat
              '''
