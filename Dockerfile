@@ -1,6 +1,6 @@
 FROM tomcat:latest
   
-COPY /var/lib/jenkins/workspace/maven_pipe/my-app/target /user/tomcat/webapp/
+#COPY /var/lib/jenkins/workspace/maven_pipe/my-app/target /user/tomcat/webapp/
  
 # Port and set entry point for container 
 EXPOSE 8080
