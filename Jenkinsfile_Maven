@@ -12,10 +12,10 @@ pipeline {
                    echo "The current build number is ${BUILD_NUMBER}"
                    rm -rf $WORKSPACE/my-app
                    mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
-                   cd /var/lib/jenkins/workspace/maven_pipe/my-app/
+                   cd $WORKSPACE/my-app/
                    ls -lhtr
                    mvn clean package
-                  chmod 777 /var/lib/jenkins/workspace/maven_pipe/my-app/*
+                  chmod 777 $WORKSPACE/my-app/*
                   ls -lhtr
                   printenv
                   
@@ -25,7 +25,7 @@ pipeline {
          stage('App run'){
                steps {
                   sh '''
-                      cd /var/lib/jenkins/workspace/maven_pipe/my-app/
+                      cd $WORKSPACE/my-app/
                       java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App
                    '''
               }
