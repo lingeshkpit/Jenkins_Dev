@@ -28,14 +28,14 @@ pipeline {
                 }
         stage('login to dockerhub') {
                 steps{
-                  sh 'docker login -u lingeswararao -p hitachi@2023'
+                     sh 'docker login -u lingeswararao -p hitachi@2023'
                    }
                  }
        stage('Push Docker image to dockerhub') {
              steps {
-                sh '''
-                docker images
-                docker push lingeswararao/tomcat:$BUILD_NUMBER
+                 sh '''
+                   docker images
+                   docker push lingeswararao/tomcat:$BUILD_NUMBER
                 '''
                 }
                }
