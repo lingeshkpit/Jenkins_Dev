@@ -1,54 +1,50 @@
 pipeline {
     agent any
-    environment {
-    DOCKERHUB_CREDENTIALS = credentials('lingeswararao-dockerhub')
-    }
     stages {
           stage ('Maven_build ') {
-            steps {
+              steps {
                 sh '''
-                 rm -rf /var/lib/jenkins/workspace/maven_pipe/my-app
-                 mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
-                 cd /var/lib/jenkins/workspace/maven_pipe/my-app/
-                 ls -lhtr
-                 mvn clean package
-                 chmod 777 /var/lib/jenkins/workspace/maven_pipe/my-app/*
-                 ls -lhtr
+                   rm -rf /var/lib/jenkins/workspace/maven_pipe/my-app
+                   mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
+                   cd /var/lib/jenkins/workspace/maven_pipe/my-app/
+                   ls -lhtr
+                   mvn clean package
+                  chmod 777 /var/lib/jenkins/workspace/maven_pipe/my-app/*
+                  ls -lhtr
                '''
                 }
               }
          stage('App run'){
-            steps {
-            sh '''
-             cd /var/lib/jenkins/workspace/maven_pipe/my-app/
-             java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App
+               steps {
+                sh '''
+                cd /var/lib/jenkins/workspace/maven_pipe/my-app/
+                java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App
+              }
             }
-         }
         stage('Build docker image') {
-            steps {
-                sh 'docker build -t lingeswararao/tomcat:$BUILD_NUMBER .'
-            }
-        }
+                steps {
+                  sh 'docker build -t lingeswararao/tomcat:$BUILD_NUMBER .'
+                   }
+                }
         stage('login to dockerhub') {
-            steps{
-                sh 'docker login -u lingeswararao -p hitachi@2023'
-                
-            }
-        }
+                steps{
+                  sh 'docker login -u lingeswararao -p hitachi@2023'
+                   }
+                 }
        stage('Push Docker image to dockerhub') {
-           steps {
-            sh '''
-              docker images
-              docker push lingeswararao/tomcat:$BUILD_NUMBER
-             '''
-           }
-           }
+             steps {
+                sh '''
+                docker images
+                docker push lingeswararao/tomcat:$BUILD_NUMBER
+                '''
+                }
+               }
          stage('Docker_local_images_cleanup') {
-            steps {
-                sh 'docker rmi -f $(docker images -q)'
-            }
-          }
-         }
+                steps {
+                  sh 'docker rmi -f $(docker images -q)'
+                  }
+                  }
+              }
       post{
         always {
             sh 'docker logout'
