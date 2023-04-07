@@ -7,7 +7,7 @@ pipeline {
           stage ('Maven_build ') {
               steps {
                 sh '''
-                   echo "The current build number is ${env.BUILD_NUMBER}"
+                   echo "The current build number is ${BUILD_NUMBER}"
                    rm -rf /var/lib/jenkins/workspace/maven_pipe/my-app
                    mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
                    cd /var/lib/jenkins/workspace/maven_pipe/my-app/
