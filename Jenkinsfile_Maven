@@ -22,6 +22,7 @@ pipeline {
               sh  '''
                      echo $SHELL
                      echo $PWD
+                     printenv
                   '''
                 
                }
