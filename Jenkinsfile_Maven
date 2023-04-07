@@ -1,24 +1,18 @@
 pipeline {
     agent any 
-    environment {
+       environment {
         DOCKERHUB_CREDENTIALS_USR = 'lingeswararao'
         DOCKERHUB_CREDENTIALS_PSW = 'hitachi@2023'
-        
          }
     stages {
           stage ('Maven_build ') {
               steps {
                 sh '''
-                   echo "The current build number is ${BUILD_NUMBER}"
                    rm -rf $WORKSPACE/my-app
                    mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
                    cd $WORKSPACE/my-app/
-                   ls -lhtr
                    mvn clean package
-                  chmod 777 $WORKSPACE/my-app/*
-                  ls -lhtr
-                  printenv
-                  
+                  chmod 777 $WORKSPACE/my-app/*  
                '''
                 }
               }
