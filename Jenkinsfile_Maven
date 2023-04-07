@@ -7,8 +7,8 @@ pipeline {
           stage ('Maven_build ') {
               steps {
                 sh '''
-                   echo "${env.WORKSPACE}"
-                   rm -rf "${WORKSPACE}"/maven_pipe/my-app
+                   echo "The current build number is ${env.BUILD_NUMBER}"
+                   rm -rf /var/lib/jenkins/workspace/maven_pipe/my-app
                    mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
                    cd /var/lib/jenkins/workspace/maven_pipe/my-app/
                    ls -lhtr
@@ -49,4 +49,9 @@ pipeline {
                   }
                   }
               }
-              }
+     post{
+        always {
+            sh 'docker logout'
+        }
+       }
+         }
