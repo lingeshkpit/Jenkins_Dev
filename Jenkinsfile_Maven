@@ -15,7 +15,7 @@ pipeline {
                    mvn clean package
                   chmod 777 /var/lib/jenkins/workspace/maven_pipe/my-app/*
                   ls -lhtr
-                  echo ${env.WORKSPACE}
+                  printenv
                   
                '''
                 }
