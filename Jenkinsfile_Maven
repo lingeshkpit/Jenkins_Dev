@@ -19,7 +19,11 @@ pipeline {
               
           stage ('LINUX COMMANDS') {
                steps{
-              sh  'sudo echo $SHELL'
+              sh  '''
+                     echo $SHELL
+                     echo $PWD
+                  '''
+                
                }
           }
           
