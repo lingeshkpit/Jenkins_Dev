@@ -2,13 +2,12 @@ pipeline {
     agent any 
     environment {
         DOCKERHUB_CREDENTIALS_USR = 'lingeswararao'
-        DOCKERHUB_CREDENTIALS_PSW = 'hitachi@2023'
          }
     stages {
           stage ('Maven_build ') {
               steps {
                 sh '''
-                   rm -rf /var/lib/jenkins/workspace/maven_pipe/my-app
+                   rm -rf $WORKSPACE/maven_pipe/my-app
                    mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
                    cd /var/lib/jenkins/workspace/maven_pipe/my-app/
                    ls -lhtr
