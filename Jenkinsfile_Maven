@@ -43,10 +43,10 @@ pipeline {
                 sh 'docker rmi -f $(docker images -q)'
             }
           }
-   post {
+         }
+      post{
         always {
             sh 'docker logout'
         }
-    }
-     }
+       }
       }
