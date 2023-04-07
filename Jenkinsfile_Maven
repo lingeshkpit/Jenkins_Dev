@@ -1,5 +1,8 @@
 pipeline {
     agent any
+     environment {
+    DOCKERHUB_CREDENTIALS = credentials('lingeswararao-dockerhub')
+    }
     stages {
           stage ('Maven_build ') {
               steps {
@@ -29,7 +32,7 @@ pipeline {
                 }
         stage('login to dockerhub') {
                 steps{
-                     sh 'docker login -u lingeswararao -p hitachi@2023'
+                     sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
                    }
                  }
         stage('Push Docker image to dockerhub') {
