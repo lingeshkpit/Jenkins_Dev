@@ -16,9 +16,10 @@ pipeline {
               }
          stage('App run'){
                steps {
-                sh '''
-                cd /var/lib/jenkins/workspace/maven_pipe/my-app/
-                java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App
+                  sh '''
+                      cd /var/lib/jenkins/workspace/maven_pipe/my-app/
+                      java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App
+                   '''
               }
             }
         stage('Build docker image') {
