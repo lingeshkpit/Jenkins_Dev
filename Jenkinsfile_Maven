@@ -19,7 +19,7 @@ pipeline {
               
           stage ('LINUX COMMANDS') {
                steps{
-              sh  'echo $SHELL'
+              sh  'sudo echo $SHELL'
                }
           }
           
