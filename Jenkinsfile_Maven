@@ -18,7 +18,7 @@ pipeline {
     
         stage('Build docker image') {
             steps {
-                sh 'docker build -t lingeswararao/tomcat .'
+                sh 'docker build -t lingeswararao/tomcat:$BUILD_NUMBER .'
             }
         }
         stage('login to dockerhub') {
@@ -29,8 +29,9 @@ pipeline {
        stage('Push Docker image to dockerhub') {
            steps {
             sh '''
-              docker tag tomcat lingeswararao/tomcat
-              docker push lingeswararao/tomcat
+              #docker tag tomcat lingeswararao/tomcat
+              docker images
+              docker push lingeswararao/tomcat:$BUILD_NUMBER
              '''
            }
            }
