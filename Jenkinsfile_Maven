@@ -34,6 +34,7 @@ pipeline {
               sh  '''
                      echo $SHELL
                      echo $PWD
+                     docker images
                      printenv
                   '''
                 
