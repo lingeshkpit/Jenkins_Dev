@@ -6,11 +6,7 @@ pipeline {
          }
     stages {
     
-           stage('Docker_local_images_cleanup') {
-                steps {
-                  sh 'docker rmi -f $(docker images -q)'
-                  }
-                  }
+          
           stage ('Maven_build ') {
               steps {
                 sh '''
