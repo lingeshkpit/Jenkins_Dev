@@ -5,6 +5,12 @@ pipeline {
         DOCKERHUB_CREDENTIALS_PSW = 'hitachi@2023'
          }
     stages {
+    
+           stage('Docker_local_images_cleanup') {
+                steps {
+                  sh 'docker rmi -f $(docker images -q)'
+                  }
+                  }
           stage ('Maven_build ') {
               steps {
                 sh '''
@@ -15,7 +21,7 @@ pipeline {
                   chmod 777 $WORKSPACE/my-app/*  
                '''
                 }
-              }
+               }
               
           stage ('LINUX COMMANDS') {
                steps{
@@ -52,12 +58,12 @@ pipeline {
                  sh 'docker push lingeswararao/tomcat:$BUILD_NUMBER'
                 }
                }
-               
-         stage('Docker_local_images_cleanup') {
-                steps {
-                  sh 'docker rmi -f $(docker images -q)'
-                  }
-                  }
+          stage('Pull Docker image from dockerhub') {
+              steps {
+                 sh 'docker run -itd -p 8011:8080 lingeswararao/tomcat:$BUILD_NUMBER'
+                }
+               }
+        
               }
      post{
         always {
