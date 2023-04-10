@@ -21,8 +21,10 @@ pipeline {
                
                stage('Docker_local_images and container_cleanup') {
                 steps {
-                  sh'docker kill $(docker ps -q'
-                  sh 'docker rmi -f $(docker images -q)'
+                  sh '''
+                  docker kill $(docker ps -q)
+                  #docker rmi -f $(docker images -q)
+                   '''
                   
                   }
                   }
