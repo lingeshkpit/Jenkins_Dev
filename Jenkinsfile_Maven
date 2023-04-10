@@ -65,6 +65,8 @@ pipeline {
                  sh 'docker push lingeswararao/tomcat:$BUILD_NUMBER'
                 }
                }
+               
+          // CD Pipeline
           stage('Pull Docker image from dockerhub and run the container') {
               steps {
                  sh 'docker run -itd -p 8011:8080 lingeswararao/tomcat:$BUILD_NUMBER'
