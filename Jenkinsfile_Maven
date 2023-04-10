@@ -59,7 +59,11 @@ pipeline {
                  sh 'docker run -itd -p 8011:8080 lingeswararao/tomcat:$BUILD_NUMBER'
                 }
                }
-        
+            stage('Docker_local_images_cleanup') {
+                steps {
+                  sh 'docker rmi -f $(docker images -q)'
+                  }
+                  }
               }
      post{
         always {
