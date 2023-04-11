@@ -2,7 +2,7 @@ pipeline {
     agent any 
        environment {
         DOCKERHUB_CREDENTIALS_USR = 'lingeswararao'
-        DOCKERHUB_CREDENTIALS_PSW = 'hitachi@2023'
+        //DOCKERHUB_CREDENTIALS_PSW = 'hitachi@2023'
          }
     stages {
     
@@ -46,9 +46,13 @@ pipeline {
                   sh 'docker build -t lingeswararao/tomcat:$BUILD_NUMBER .'
                    }
                 }
+
         stage('login to dockerhub') {
                 steps{
-                     sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                              withCredentials([string(credentialsId: 'DOCKERHUB_CREDENTIALS_PSW', variable: 'DOCKERHUB_CREDENTIALS_PSW')]) {
+    
+}
+                     sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u DOCKERHUB_CREDENTIALS_USR --password-stdin'
                    }
                  }
                  
