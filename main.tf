@@ -7,8 +7,8 @@ provider "aws" {
 
 terraform {
   backend "s3" {
-    bucket = "devopshsg123"
-    key    = "aws/terraform.tfstate"
+    bucket = "devopshsg1234"
+    key    = "aws/terraform1.tfstate"
     region = "ap-south-1"
   }
 }
