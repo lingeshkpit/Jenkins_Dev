@@ -1,9 +1,9 @@
 provider "aws" {
-  region     = "us-west-1"
-  access_key = "AKIAXL7MNPPCSQHM4KZD"
-  secret_key = "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"
+  profile    = "default"
+  region     = "us-east-2"
+  access_key = "AKIAXL7MNPPCRPLWI46F"
+  secret_key = "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"
 }
-
 terraform {
   backend "s3" {
     bucket = "devopshsg1234"
