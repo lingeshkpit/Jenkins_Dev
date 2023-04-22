@@ -11,10 +11,10 @@ terraform {
     region = "ap-south-1"
   }
 }
-resource "aws_vpc" "terraform_vpc" {
+resource "aws_vpc" "terraform_vpc1" {
   cidr_block = "10.0.0.0/16"
 
   tags = {
-    Name = "terraform_vpc"
+    Name = "terraform_vpc1"
   }
 }
